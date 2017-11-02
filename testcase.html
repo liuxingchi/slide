@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>API Test suites</title>
+	<script src="__JS__jquery-1.8.0.min.js" type="text/javascript"></script>
+	<script src="__JS__functions.js" type="text/javascript"></script>
+	<script src="__JS__jquery.json-2.3.min.js" type="text/javascript"></script> 
+	<style type="text/css">
+
+	    .odd
+	    {
+		margin:5px 0px;
+		border: 1px solid #000000;
+		width: 100%;
+		background-color: #FFFFAA;
+	    }
+
+	    .even
+	    {
+		margin:5px 0px;
+		border: 1px solid #000000;
+		width:100%;
+		background-color: #CCCCFF;
+	    }
+	</style>	
+	<script>
+	    function test(url){
+		var json = '';
+		$("#"+url+" input[type='text']").each(function(i,val){ 
+		    json = json +","+ $(this).attr('name')+":\""+$(this).val()+"\"";
+		});
+		json ='{'+json.substr(1)+'}';
+		var obj = eval('(' + json + ')'); 
+		$.ajax({
+		    type:"post", 
+		    url:url.replace(/_/g,'/'), 
+		    dataType:"json",
+		    data: obj,
+		    timeout:5000,
+		    cache:true,
+		    async:true,
+		    success: function (data, textStatus) { 
+			alert($.toJSON(data));
+			$("#debugResult").html($.toJSON(data));
+		    },
+		    error: function(XMLHttpRequest, textStatus, errorThrown) {
+			if(XMLHttpRequest.status == 200)
+			{
+			    //alert(XMLHttpRequest.responseText);
+			    $("#debugResult").html(XMLHttpRequest.responseText);
+			}
+			else
+			{ 
+			    $("#debugResult").html(XMLHttpRequest.responseText);
+			    alert("XMLHttpRequest.status="+XMLHttpRequest.status+"\ntextStatus="+textStatus+"\nerrorThrown="+errorThrown);
+			}
+		    }
+		});
+	    }
+	</script>
+    </head>
+
+    <body>
+	<div>
+
+	    <volist name="params" id="vo" mod='2'>
+		<div <eq name="mod" value="0">class="even"</eq><eq name="mod" value="1">class="odd"</eq>>
+		    <div>
+			<div><label><b><font color="red">{$vo.url}&nbsp;&nbsp;&nbsp;&nbsp;{$vo.name}</font></b></label></div>
+			<div>{$vo.status}</div>
+		    </div>
+		    <assign name="vo_url" value="$vo.url" />
+		    <foreach name="vo['params']" item="vo1">
+			<div id="{:str_replace('/', '_',$vo_url)}">
+
+			    <label>{$key}</label>
+			    <input id="{:str_replace('/', '_',$vo_url)}_{$key}" name="{$key}" type="text" value="" />
+			    <label style='padding-left:10px;'>{$vo1}</label>
+
+			</div>
+
+		    </foreach>
+
+		    <div class="item">
+			<input name="submit" type="submit" value="submit" onclick="test('{:str_replace('/', '_',$vo_url)}')"/>
+		    </div>
+
+		</div>
+	    </volist>
+
+
+	    <div id="debugResult" style="width:100%"> Debug Info:</div>
+    </body>
+</html>

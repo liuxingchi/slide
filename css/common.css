@@ -1,0 +1,21 @@
+* {outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a{text-decoration: none}
+html, body {width: 0.8%;height: 0.8%;padding: 0;margin: 0;font:0.3rem/1.5 '微软雅黑';color:#646464;}
+p,h1,h2{margin:0;padding:0;font-weight: 500}
+h1,h2{font-family: '幼圆'}
+ul,li{padding:0;margin:0;list-style: none}
+em,i,cite {font-style:normal}
+
+.clearafter:after {content:' ';font-size:0;display:block;visibility:visible;clear:both;height:0;overflow:hidden;}
+.wrapper{width:7.2rem;margin:0 auto;overflow: hidden;height:11rem;position: relative;}
+.oflow{overflow: hidden;position: relative;width: 7.2rem;height: 11rem;}
+.outbox{position: absolute;left:0;-webkit-transition: all 0.8s ease-in-out;
+-moz-transition: all 0.8s ease-in-out;
+-ms-transition: all 0.8s ease-in-out;
+-o-transition: all 0.8s ease-in-out;
+transition: all 0.8s ease-in-out;}
+.imgbox{width: 7.2rem;height: 11rem;float:left;position: relative;opacity: 0}
+.mainpic{width: 7.2rem;height:11rem;}
+.btn{position: absolute;}
+.btn:hover,.btn.act{background-position:0 bottom !important;}
+.lodding{width: 0.32rem;height: 0.32rem;position: fixed;left:50%;margin-left: -0.16rem;top:50%;margin-top: -0.16rem;z-index: 2}

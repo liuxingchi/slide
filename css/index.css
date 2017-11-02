@@ -1,0 +1,15 @@
+.content{padding:0.16rem 0.2rem;}
+.goodsone{display:block;height: 2.3rem;border:0.01rem solid #8c8c8c;position: relative;margin-bottom: 0.2rem}
+.goodsone img{width: 100%;}
+.goodsone .goodsname{position: absolute;width: 2rem;height: 0.5rem;color:#f3a401;font-size:0.3rem;text-align: center;background:#000;right:-0.2rem;bottom:0.9rem; }
+.goodsone .goodsname i{color:#f3a401;font-size: 0.22rem;margin-right:0.2rem;margin-left:0.1rem }
+
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    background: rgba(0,0,0,0.8);
+    top: 0px;
+    left: 0px;
+}
